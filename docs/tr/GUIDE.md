@@ -312,6 +312,8 @@ Gereksinimler: Node 20 veya üstü ve PATH'te [ffmpeg](https://ffmpeg.org/).
 
 ```bash
 node tools/audio/build-reciter.mjs husary      # veya minshawi, shuraim, muaiqly, dosari, alafasy, abdulbasit, alijaber
+node tools/audio/build-reciter.mjs all         # sekiz kârinin hepsi, sırayla (oluşturulunca 6.2 GB)
+PAGES=1-3 node tools/audio/build-reciter.mjs husary   # hızlı deneme: üç sayfa, sources/test/ klasörüne yazılır
 ```
 
 Araç dört adımda çalışır ([`tools/audio/`](../../tools/audio)) ve `data/audio/husary/p001.mp3 … p604.mp3` ile

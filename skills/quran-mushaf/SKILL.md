@@ -38,9 +38,11 @@ Read `quran-libary/AGENTS.md` completely before writing code, then look at `exam
 6. **Audio** — copy `example/js/audio-queue.js` and `audio-player.js`; reciter list from `audio/reciters.json`; play
    list from the reciter's `index.json`; follow the page with `pageOfAyah`; Media Session; RTL controls.
 7. **Offline** — the service worker from `example/sw.js` (cache-first data and fonts, network-first app shell).
-8. **Hosting** (when the user wants it) — walk them through `docs/<lang>/GUIDE.md` §8, or run
-   `tools/cloudflare/upload-r2.mjs` with their `.env` (never print or commit the keys). Audio files come from
-   `node tools/audio/build-reciter.mjs <id>` (Node 20+, ffmpeg, ~1 hour per reciter).
+8. **Audio files** — they are not in git. Follow `AGENTS.md` §5.1: check Node 20+ and ffmpeg, ask which reciters,
+   then run `node tools/audio/build-reciter.mjs <id …|all>` in the background. It downloads the recordings from
+   EveryAyah and rebuilds the published files byte for byte (~1 hour per reciter).
+9. **Hosting** (when the user wants it) — walk them through `docs/<lang>/GUIDE.md` §8, or run
+   `tools/cloudflare/upload-r2.mjs` with their `.env` (never print or commit the keys).
 
 ## 4. Verify (AGENTS.md §9)
 

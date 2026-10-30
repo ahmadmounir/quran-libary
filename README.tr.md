@@ -33,8 +33,11 @@ npx serve .
 bir kez oluşturun (Node 20+ ve ffmpeg gerekir; yaklaşık bir saat sürer, çoğu indirmedir):
 
 ```bash
-node tools/audio/build-reciter.mjs husary
+node tools/audio/build-reciter.mjs husary    # ya da birkaç kâri, ya da sekizi için: all
 ```
+
+Araç, kârinin kayıtlarını EveryAyah'tan indirir ve ses dosyalarımızı birebir aynı şekilde yeniden oluşturur (bunu
+kontrol eder ve size söyler).
 
 ## Rehber
 

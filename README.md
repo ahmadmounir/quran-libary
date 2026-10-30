@@ -31,8 +31,10 @@ Open `http://localhost:3000/example/` — the mushaf runs from this repository's
 reciter once (Node 20+ and ffmpeg; about an hour, mostly downloading):
 
 ```bash
-node tools/audio/build-reciter.mjs husary
+node tools/audio/build-reciter.mjs husary    # or several ids, or: all
 ```
+
+It downloads the reciter's recordings from EveryAyah and rebuilds our audio files exactly (it checks and says so).
 
 ## The guide
 

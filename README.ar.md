@@ -32,8 +32,10 @@ npx serve .
 (تحتاج إلى Node 20+ و ffmpeg؛ نحو ساعة، معظمها في التنزيل):
 
 ```bash
-node tools/audio/build-reciter.mjs husary
+node tools/audio/build-reciter.mjs husary    # أو عدة قراء، أو: all للثمانية
 ```
+
+تنزّل الأداة تسجيلات القارئ من EveryAyah وتعيد بناء ملفاتنا الصوتية مطابقةً لها تماماً (وتتحقق من ذلك وتخبرك).
 
 ## الدليل
 

@@ -302,6 +302,8 @@ Requirements: Node 20 or newer and [ffmpeg](https://ffmpeg.org/) on your PATH.
 
 ```bash
 node tools/audio/build-reciter.mjs husary      # or minshawi, shuraim, muaiqly, dosari, alafasy, abdulbasit, alijaber
+node tools/audio/build-reciter.mjs all         # all eight, one after the other (6.2 GB when built)
+PAGES=1-3 node tools/audio/build-reciter.mjs husary   # a quick test: three pages, written to sources/test/
 ```
 
 It runs four steps ([`tools/audio/`](../../tools/audio)) and writes `data/audio/husary/p001.mp3 … p604.mp3` and

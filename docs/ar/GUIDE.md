@@ -302,6 +302,8 @@ if (ratio > 1) line.style.fontSize = `calc(${currentSize} * ${0.99 / ratio})`;
 
 ```bash
 node tools/audio/build-reciter.mjs husary      # أو: minshawi, shuraim, muaiqly, dosari, alafasy, abdulbasit, alijaber
+node tools/audio/build-reciter.mjs all         # القراء الثمانية واحداً بعد الآخر (6.2 GB بعد البناء)
+PAGES=1-3 node tools/audio/build-reciter.mjs husary   # تجربة سريعة: ثلاث صفحات تُكتب في sources/test/
 ```
 
 تنفّذ الأداة أربع خطوات ([`tools/audio/`](../../tools/audio))، وتكتب `data/audio/husary/p001.mp3 … p604.mp3`

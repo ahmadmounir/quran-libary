@@ -20,7 +20,7 @@ tracking unless the user asks for them separately.
 | `data/audio/reciters.json` | `{ v, reciters: [{ id, name: { ar, en, tr }, style, path: "<id>/" }] }` |
 | `data/audio/<id>/index.json` | timing index per reciter, §5; the MP3s are NOT in git (built by `tools/audio`) |
 | `example/js/*.js` | reference modules: `config`, `data`, `fonts`, `page`, `audio-queue`, `audio-player`, `app`; `example/sw.js` |
-| `tools/audio/build-reciter.mjs <id>` | builds `data/audio/<id>/p001.mp3…p604.mp3` (Node 20+, ffmpeg) |
+| `tools/audio/build-reciter.mjs <id…\|all>` | downloads the recordings from EveryAyah and builds `data/audio/<id>/p001.mp3…p604.mp3` (Node 20+, ffmpeg) — see §5.1 |
 | `tools/cloudflare/upload-r2.mjs <dir> <prefix>` | uploads to R2 (keys in `.env`, see `.env.example`) |
 | `tools/cloudflare/files-worker.js` | Worker serving the bucket (binding `FILES`, folders `v1/`) |
 
@@ -87,6 +87,35 @@ before ayah 1 (never surahs 1 and 9). An ayah ends at the next entry's `startMs`
 - Media Session metadata + play / pause / previoustrack / nexttrack handlers.
 - RTL UI: "next ayah" on the LEFT, skip icons mirrored; next PAGE is also on the left, swipe right = next page.
 - Start playback inside the user's tap (preload the reciter's `index.json` before), or iPhones refuse to play.
+
+### 5.1 Getting the audio files (they are NOT in git — you must fetch them)
+
+The repository has the reciters' timing indexes but not the MP3s (6.2 GB). When the app needs audio, produce them
+with the included tool — it downloads the recordings from EveryAyah, the same source the published files were made
+from, and rebuilds them **byte for byte** (verified):
+
+1. Check `node --version` (≥ 20) and `ffmpeg -version`. If ffmpeg is missing, install it (winget `Gyan.FFmpeg`,
+   Homebrew `ffmpeg`, apt `ffmpeg`) or ask the user to.
+2. Ask the user which reciters they want before downloading gigabytes (default: `husary`). Built sizes: husary
+   1.12 GB, minshawi 0.80, shuraim 0.52, muaiqly 0.60, dosari 0.75, alafasy 0.85, abdulbasit 0.85, alijaber 0.70
+   (6.2 GB in all); the download is about as big again.
+3. Run it in the background (about an hour per reciter, mostly downloading; it resumes if stopped):
+
+   ```bash
+   node tools/audio/build-reciter.mjs husary            # one reciter
+   node tools/audio/build-reciter.mjs husary minshawi   # several
+   node tools/audio/build-reciter.mjs all               # all eight
+   ```
+
+   Quick test first if you like: `PAGES=1-3 node tools/audio/build-reciter.mjs husary` (writes to
+   `sources/test/husary/`, never to `data/`).
+4. Each run ends with a check (604 pages, 6,236 ayat, lengths) and "identical to the published files". If it reports a
+   difference, the source recordings changed: keep the new `index.json` with the new MP3s — they belong together.
+5. Serve the result: locally `data/audio/` already works with the example; for production upload it
+   (`node tools/cloudflare/upload-r2.mjs data/audio v1/audio`, §6).
+6. The downloaded ayah files stay in `sources/` (git-ignored, ~same size again); delete them once the build is checked.
+
+Never commit the MP3s, never point a production app at someone else's Worker or bucket.
 
 ## 6. Hosting (Cloudflare)
 
