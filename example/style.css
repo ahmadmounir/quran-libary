@@ -1,0 +1,167 @@
+:root {
+  --bg: #f3efe6;
+  --paper: #fbf6ea;
+  --ink: #1d1b16;
+  --gold: #8a6d2f;
+  --accent: #0d3429;
+  --bar: #ffffffee;
+  --muted: #6b6658;
+  --reading: color-mix(in oklab, #0d3429 16%, transparent);
+  --reading-line: color-mix(in oklab, #0d3429 55%, transparent);
+  --picked: color-mix(in oklab, #b8912e 32%, transparent);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000;
+    --paper: #0b0b0b;
+    --ink: #ece6d6;
+    --gold: #cdb26a;
+    --accent: #2f8c65;
+    --bar: #151515ee;
+    --muted: #a39d8d;
+    --reading: color-mix(in oklab, #2f8c65 30%, transparent);
+    --reading-line: color-mix(in oklab, #2f8c65 75%, transparent);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.4 system-ui, "Segoe UI", Tahoma, sans-serif;
+}
+button, select, input { font: inherit; color: inherit; }
+button, select, input[type="number"] {
+  height: 2.5rem;
+  border: 1px solid color-mix(in oklab, var(--muted) 35%, transparent);
+  border-radius: 0.6rem;
+  background: var(--paper);
+  padding: 0 0.6rem;
+}
+button { cursor: pointer; min-width: 2.5rem; }
+
+.toolbar, .player {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bar);
+}
+.toolbar select { flex: 1; min-width: 0; }
+.toolbar input { width: 4.5rem; text-align: center; }
+.player { padding-bottom: max(0.5rem, env(safe-area-inset-bottom)); flex-wrap: wrap; justify-content: center; }
+.player .play { background: var(--accent); color: #fff; border-color: transparent; border-radius: 999px; }
+.player #reciter { max-width: 11rem; }
+.player .now { min-width: 6rem; color: var(--muted); text-align: center; }
+.player.unavailable { display: none; }
+
+/* --- The page: a 3:5 card that is also a size container, so the type follows the CARD width (cqw). ---
+   A full printed line of the QCF V2 fonts measures ~15.6em, so the size is the line width / 16, capped so the 15
+   lines get at least 1.8em each and never touch (--qcf-room = the height they share). */
+#view {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  touch-action: pan-y;
+}
+.page-card {
+  position: relative;
+  aspect-ratio: 3 / 5;
+  width: min(100%, 450px, calc((100dvh - 9.5rem) * 3 / 5));
+  container-type: inline-size;
+  --qcf-room: calc(164.5cqw - 3.5rem);
+  --qcf-size: min(calc(100cqw / 16), calc(var(--qcf-room) / 27));
+  padding: 6% 3%;
+  background: var(--paper);
+  border-radius: 10px;
+  box-shadow: 0 2px 14px rgb(0 0 0 / 0.08);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.page-head {
+  position: absolute;
+  top: 2%;
+  inset-inline: 3%;
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(11px, 3.2cqw, 14px);
+  color: var(--gold);
+}
+.folio {
+  position: absolute;
+  bottom: 1.5%;
+  inset-inline: 0;
+  text-align: center;
+  font-size: clamp(11px, 3cqw, 14px);
+  color: var(--gold);
+}
+
+/* 15 lines share the page height evenly */
+.page-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  direction: rtl;
+  padding-block: 1.75rem;
+}
+/* Pages 1–2: a few short lines, centered and larger, like the print */
+.page-body.opening { justify-content: center; gap: 0.4em; }
+
+/* One printed line: words spread edge to edge. Overflow stays visible so marks above / below never clip. */
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  direction: rtl;
+  white-space: nowrap;
+  width: 100%;
+  font-size: var(--qcf-size);
+  line-height: 1.5;
+}
+.line.centered { justify-content: center; column-gap: 0.25em; }
+.page-body.opening .line { justify-content: center; gap: 0.2em; font-size: calc(var(--qcf-size) * 1.3); }
+
+.word { display: inline-block; border-radius: 0.2em; cursor: pointer; }
+.word.picked { background: var(--picked); }
+
+.surah-header { display: flex; align-items: center; justify-content: center; height: 12.2cqw; direction: rtl; }
+/* The frame glyph is 3.302em wide: this size makes it exactly as wide as the page */
+.surah-frame { font-size: calc(100cqw / 3.302); line-height: 1; color: var(--gold); }
+.basmala { display: flex; justify-content: center; gap: 0.2em; direction: rtl; font-size: var(--qcf-size); line-height: 1.5; }
+
+.skeleton .line-ph { height: 4.5cqw; border-radius: 6px; background: color-mix(in oklab, var(--muted) 18%, transparent); }
+.retry { font-size: 1.5rem; }
+
+.word-panel {
+  position: fixed;
+  inset-inline: 0.75rem;
+  bottom: 7.5rem;
+  margin: 0 auto;
+  max-width: 28rem;
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  background: var(--bar);
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.18);
+  text-align: center;
+}
+.word-panel[hidden] { display: none; }
+.word-text { margin: 0; font-size: 1.6rem; }
+.word-where { margin: 0.2rem 0 0.6rem; color: var(--muted); }
+
+/* Phones: the page is the whole width, no frame */
+@media (max-width: 520px) {
+  #view { padding: 0; }
+  .page-card { width: min(100%, calc((100dvh - 8rem) * 3 / 5)); border-radius: 0; box-shadow: none; padding: 7% 2%; }
+}

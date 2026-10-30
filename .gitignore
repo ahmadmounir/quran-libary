@@ -1,0 +1,10 @@
+# Secrets: R2 keys for tools/cloudflare/upload-r2.mjs
+.env
+
+# Downloaded ayah files and the built audio (too big for git; rebuild with tools/audio/build-reciter.mjs)
+sources/
+data/audio/*/*.mp3
+
+node_modules/
+.DS_Store
+Thumbs.db

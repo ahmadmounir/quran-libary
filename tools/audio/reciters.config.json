@@ -1,0 +1,15 @@
+{
+  "comment": "One entry per reciter. everyayah = the folder name on https://everyayah.com/data/. basmalaFromS = where the basmala starts inside 001001.mp3 (Ali Jaber's begins with the isti'adha). The build trims the quiet at each ayah's edges so one ayah follows the next with ~0.25 s between them.",
+  "trim": { "quietDb": -45, "keepLeadMs": 100, "keepTailMs": 150 },
+  "kbps": 64,
+  "reciters": [
+    { "id": "husary", "everyayah": "Husary_64kbps", "name": { "ar": "محمود خليل الحصري", "en": "Mahmoud Khalil Al-Husary", "tr": "Mahmud Halil el-Husari" } },
+    { "id": "minshawi", "everyayah": "Minshawy_Murattal_128kbps", "name": { "ar": "محمد صديق المنشاوي", "en": "Mohamed Siddiq El-Minshawi", "tr": "Muhammed Sıddık el-Minşavi" } },
+    { "id": "shuraim", "everyayah": "Saood_ash-Shuraym_64kbps", "name": { "ar": "سعود الشريم", "en": "Saud Al-Shuraim", "tr": "Suud eş-Şureym" } },
+    { "id": "muaiqly", "everyayah": "Maher_AlMuaiqly_64kbps", "name": { "ar": "ماهر المعيقلي", "en": "Maher Al-Muaiqly", "tr": "Mahir el-Muaykıli" } },
+    { "id": "dosari", "everyayah": "Yasser_Ad-Dussary_128kbps", "name": { "ar": "ياسر الدوسري", "en": "Yasser Al-Dosari", "tr": "Yasir ed-Devseri" } },
+    { "id": "alafasy", "everyayah": "Alafasy_64kbps", "name": { "ar": "مشاري راشد العفاسي", "en": "Mishary Rashid Alafasy", "tr": "Mişari Raşid el-Afasi" } },
+    { "id": "abdulbasit", "everyayah": "Abdul_Basit_Murattal_64kbps", "name": { "ar": "عبد الباسط عبد الصمد", "en": "Abdul Basit Abdul Samad", "tr": "Abdülbasit Abdüssamed" } },
+    { "id": "alijaber", "everyayah": "Ali_Jaber_64kbps", "basmalaFromS": 7.0, "name": { "ar": "علي جابر", "en": "Ali Jaber", "tr": "Ali Cabir" } }
+  ]
+}

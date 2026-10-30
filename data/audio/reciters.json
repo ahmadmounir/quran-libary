@@ -1,0 +1,85 @@
+{
+  "v": 1,
+  "reciters": [
+    {
+      "id": "husary",
+      "name": {
+        "ar": "محمود خليل الحصري",
+        "en": "Mahmoud Khalil Al-Husary",
+        "tr": "Mahmud Halil el-Husari"
+      },
+      "style": "murattal",
+      "path": "husary/"
+    },
+    {
+      "id": "minshawi",
+      "name": {
+        "ar": "محمد صديق المنشاوي",
+        "en": "Mohamed Siddiq El-Minshawi",
+        "tr": "Muhammed Sıddık el-Minşavi"
+      },
+      "style": "murattal",
+      "path": "minshawi/"
+    },
+    {
+      "id": "shuraim",
+      "name": {
+        "ar": "سعود الشريم",
+        "en": "Saud Al-Shuraim",
+        "tr": "Suud eş-Şureym"
+      },
+      "style": "murattal",
+      "path": "shuraim/"
+    },
+    {
+      "id": "muaiqly",
+      "name": {
+        "ar": "ماهر المعيقلي",
+        "en": "Maher Al-Muaiqly",
+        "tr": "Mahir el-Muaykıli"
+      },
+      "style": "murattal",
+      "path": "muaiqly/"
+    },
+    {
+      "id": "dosari",
+      "name": {
+        "ar": "ياسر الدوسري",
+        "en": "Yasser Al-Dosari",
+        "tr": "Yasir ed-Devseri"
+      },
+      "style": "murattal",
+      "path": "dosari/"
+    },
+    {
+      "id": "alafasy",
+      "name": {
+        "ar": "مشاري راشد العفاسي",
+        "en": "Mishary Rashid Alafasy",
+        "tr": "Mişari Raşid el-Afasi"
+      },
+      "style": "murattal",
+      "path": "alafasy/"
+    },
+    {
+      "id": "abdulbasit",
+      "name": {
+        "ar": "عبد الباسط عبد الصمد",
+        "en": "Abdul Basit Abdul Samad",
+        "tr": "Abdülbasit Abdüssamed"
+      },
+      "style": "murattal",
+      "path": "abdulbasit/"
+    },
+    {
+      "id": "alijaber",
+      "name": {
+        "ar": "علي جابر",
+        "en": "Ali Jaber",
+        "tr": "Ali Cabir"
+      },
+      "style": "murattal",
+      "path": "alijaber/"
+    }
+  ]
+}

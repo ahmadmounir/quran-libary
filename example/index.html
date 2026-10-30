@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d3429">
+  <title>المصحف — مثال</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <!-- In a right-to-left page the first button sits on the right: "previous page" right, "next page" left. -->
+    <button id="prev" type="button" aria-label="الصفحة السابقة">›</button>
+    <select id="surah" aria-label="السورة"></select>
+    <input id="page-number" type="number" min="1" max="604" inputmode="numeric" aria-label="رقم الصفحة">
+    <button id="next" type="button" aria-label="الصفحة التالية">‹</button>
+  </header>
+
+  <main id="view" aria-live="polite"></main>
+
+  <div id="word-panel" class="word-panel" hidden>
+    <p id="word-text" class="word-text"></p>
+    <p id="word-where" class="word-where"></p>
+    <button id="word-play" type="button">▶ استمع من هذه الآية</button>
+  </div>
+
+  <footer id="player" class="player">
+    <select id="reciter" aria-label="القارئ"></select>
+    <!-- Reading order: the previous ayah on the right, the next on the left. -->
+    <button id="ayah-prev" type="button" aria-label="الآية السابقة">⏭</button>
+    <button id="play" type="button" class="play" aria-label="تشغيل / إيقاف">▶</button>
+    <button id="ayah-next" type="button" aria-label="الآية التالية">⏮</button>
+    <button id="stop" type="button" aria-label="إيقاف">■</button>
+    <span id="now" class="now"></span>
+    <select id="repeat" aria-label="تكرار كل آية">
+      <option value="1">×1</option><option value="2">×2</option><option value="3">×3</option>
+      <option value="5">×5</option><option value="0">∞</option>
+    </select>
+    <select id="speed" aria-label="السرعة">
+      <option value="0.75">0.75</option><option value="1">1</option><option value="1.25">1.25</option><option value="1.5">1.5</option>
+    </select>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
